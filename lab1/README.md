@@ -192,7 +192,7 @@ Let's see if Firehose has successfully delivered data to your S3 bucket **YOUR_U
    
    How can we find all unique activities with `"device_id":  10`?
 
-![Quicksight Visualization](./img/quicksight.png)
+![Quicksight Visualization](./img/quicksight-2.png)
 
 3. How can you send data from a simple web application such as a Wordpress website? Hint: Kinesis has [Client Libraries](https://docs.aws.amazon.com/streams/latest/dev/developing-consumers-with-kcl.html) in Java, Node, .NET, Python and Ruby
 # You're done!
