@@ -193,8 +193,10 @@ Let's see if Firehose has successfully delivered data to your S3 bucket **YOUR_U
    How can we find all unique activities with `"device_id":  10`?
 
 
+# You're done!
 
 ---
+
 
 ## 3(B). Instructor demo - Send data from a simple Wordpress application. 
 
