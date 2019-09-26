@@ -52,7 +52,7 @@ Make sure you bring down / delete all resources created as part of this lab
 	* Delete Notebook: **aws-glue-notebook1**
 * Delete IAM Role
 	* GoTo: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles
-	* Search for AWSGlueServiceRoleDefault
+	* Search for AWSGlueServiceRoleLab
 	* Delete Role: **AWSGlueServiceRoleLab**
 * Delete S3 bucket
 	* GoTo: https://s3.console.aws.amazon.com/s3/home?region=us-east-1
