@@ -6,24 +6,20 @@ In this step we will visualize it using QuickSight
 Login to Amazon Quick Sight Console & complete the registration & sign-up
 
 * GoTo: https://us-east-1.quicksight.aws.amazon.com/sn/start
-* You should see quicksight hompage: 
-![
-](./img/quicksight_home_page.jpg)
+* You may be asked to Sign Up for Quicksight. Proceed to Create your QuickSight account with an Enterprise plan.
+* Create your QuickSight account:
+	* Edition: **Use Role Based Federation(SSO)**
+	* QuickSight region: **US East (N. Virginia)**
+	* QuickSight account name: **YOUR_USERNAME**
+	* Check the following:
+		* Enable autodiscover of data and users in your Amazon Redshift....
+		* Amazon Athena
+		* Amazon S3: Select **YOUR_USERNAME-datalake-demo-bucket** > **Select buckets**
+		* **Go to Amazon Quicksight**
+		
+Welcome to the QuickSight console!
 
-## Setting QuickSight Permissions
-
-* GoTo: https://us-east-1.quicksight.aws.amazon.com/sn/console/resources?#
-* Select: **Amazon Athena**  - this enables QuickSight access to Amazon Athena databases
-* Select: **Amazon S3**
-	* Select: **yourname-datalake-demo-bucket**
-	* Click: **Select buckets**
-* Click: **Update**
-
-![
-](./img/qs_permissions_1.jpg)
-
-![
-](./img/qs_permissions_2.jpg)
+![QuickSight console](./img/qs-console.png)
 
 
 ## Adding a New Dataset
@@ -33,17 +29,14 @@ Login to Amazon Quick Sight Console & complete the registration & sign-up
     * Click - **New Data Set**
     * Click - **Athena** 
     * New Athena data source
-        * Data source name: **summitdemo**
-        * Click - Validate Connection 
-            * This will check if your QuickSight can access Athena
-            * If validation fails - click on your username on top-right > 
-        * Click - **Create data source**
+        * Data source name: **awslabs_db**
     * Choose your table:
-        * Database: contain sets of tables: select - **summitdb**
+        * Database: contain sets of tables: select - **awslabs_db**
         * Tables: contain the data you can visualize : select - **processed_data**
         * Click - **Select**
     * Finish data set creation:
         * Select - **Directly query your data**
+	* SPICE is Amazon QuickSight's in-memory optimized calculation engine, designed specifically for fast, ad hoc data visualization
         * Click **Visualize**
 
 
@@ -61,7 +54,11 @@ In this step, we will create a visualization that show us which users are listen
     * Click - **track_name**
 * Just above the visualization you should see **Field wells** : [**Rows - device_id**] [**Columns - track_name**]
 
+![Heatmap](./img/qs-heatmap.png)
+
+
 If you hover on dark blue patches on the heatmap you will see that those particular users are listening to same track repeatedly.
+
 
 
 ### Visualization 2: Tree map of most played Artist Names
@@ -74,6 +71,8 @@ In this step we will create a visualization that shows who are the host played a
     * Click on - **Tree Map**
 * On top-left panel - **Fields list**
     * Click - **artist_name**
+
+![Treemap](./img/qs-treemap.png)
 
 Play around and explore Amazon QuickSight Console. Try out filters, other visualization types, etc.
 
