@@ -1,5 +1,5 @@
 # Building Serverless Data Lakes on AWS
-Author: Unni Pillai | Amazon Web Services | [Twitter](https://twitter.com/unni_k_pillai) | [Linkedin](http://bit.ly/upillai)
+Forked from Author: [Unni Pillai](github.com/unnipillai/techfest-building-serverless-datalake-on-aws) 
 
 ![Architecture Diagram](./img/unnik-techfest-2019-lab-architecture.png)
 
@@ -16,6 +16,12 @@ Author: Unni Pillai | Amazon Web Services | [Twitter](https://twitter.com/unni_k
 * This lab should be executed in **us-east-1** region
 * Best is to **follow links from this  guide** & open them **in new a tab**
 * Run this lab in a modern browser
+
+# Syllabus
+
+1. Lab 1: Ingest and Storage [Open Lab](./lab1)
+2. Lab 2: Process and Orchestration [Open Lab](./lab2)
+3. Lab 3: Catalog Data [Open Lab](./lab3)
 
 # Part 1: Ingest and Storage
 
