@@ -40,7 +40,7 @@ In this step, we will create Crawlers to discover the schema and structure of da
     * Choose a data store
         * Data stores: **S3**
         * Crawl data in: **Specified path in my account**
-        * Include path: **s3://YOUR_USERNAME-datalake-demo-bucket/data/raw/**
+        * Include path: **s3://YOUR_USERNAME-datalake-demo-bucket/data/**
         * Click - **Next**
         * Add another data store : **No**
         * Click - **Next**
@@ -54,7 +54,6 @@ In this step, we will create Crawlers to discover the schema and structure of da
     * Configure the crawler's output
         * Click - Add database
         * Database name: **awslabs_db**
-	* (optional) Prefix added to tables: `kdg_`
         * Click - **Create**
         * Click - **Next**
     * Review all steps
