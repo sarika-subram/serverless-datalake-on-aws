@@ -98,37 +98,48 @@ Now, it is time to start streaming data into your s3 bucket.
 
 ## 3(A). Generate Dummy Data
 
-In this step we will configure a traffic-generator application, Kinesis Data Generator to produce data streams/events for sending into the Kinesis Firehose stream you created earlier. 
+In this step we will configure an application, Kinesis Data Generator to generate random data/event streams into our data lake.
 
 * **Configure Amazon Cognito** for Kinesis Data Generator - In this step we will launch a cloud formation stack that will configure Cognito. This cloudformation scripts launches in **Oregon region** (No need to change this region)
     * Goto : https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Kinesis-Data-Generator-Cognito-User&templateURL=https://s3-us-west-2.amazonaws.com/kinesis-helpers/cognito-setup.json
     * Click - **Next**
-    * Specify Details:
-        * Username - **admin**
-        * Password - **choose a alphanumeric password**
-        * Click - **Next**
-    * Options:
-        * Click - **Next**
-    * Review:
+    * **Specify stack details**. In this step you will create a mock admin for your data generator. Use a simple admin/password combination and keep it handy.
+        * Stack name: (autofilled) **Kinesis-Data-Generator-Cognito-User**
+        * Username: **admin**
+        * Password: **choose a alphanumeric password**
+        * Click on **Next**
+    * **Configure stack option**
+        * Leave all as-is.
+        * Click on **Next**
+    * Review your configurations, especially for Username and Password.
         * Scroll down
-        * I acknowledge that AWS CloudFormation might create IAM resources: **Check**
-        * Click - **Create**
-    * Refresh your AWS Cloudformation Console
-    * Wait till the stack status changes to **Create_Complete**
-        * Select the **Kinesis-Data-Generator-Cognito-User **stack
-        * GoTo outputs tab : click on the link that says: **KinesisDataGeneratorUrl** - This will open your Kinesis Data Generator tool
-* On Amazon Kinesis Data Generator homepage
-    * **Login** with your username & password from previous step
-    * **Region: us-east-1**
-    * **Stream/delivery stream : sg-summit-demo-stream**
-    * Records per second : 2000
-    * **Record template  : **In the **big text area**, add the following json template
-    * Click - **Send Data - do not click without pasting the below bit of template in the big text area**
+        * :ballot_box_with_check: Check on  **I acknowledge that AWS CloudFormation might create IAM resources**
+        * Click on **Create stack**
 
-Once the tools send ~ 100,000 messages, you can click on - **Stop sending data to Kinesis**
+CloudFormation is now creating a Cognito User you will use with the Data Generator.
+
+You can view the created resources in the **Resources** tab.
+
+When the Stack info status changes to to **Create_Complete**:
+
+![CFN Complete](./img/cfn_kdg_complete.png)
+
+
+Go to the **Outputs** tab. The Data Generator is deployed on the **KinesisDataGeneratorUrl**.
+Click on this to open the Data Generator.
+
+* On Amazon Kinesis Data Generator homepage, **Login** with your username & password.
+
+![KDG Console](./img/kdg_console.png)
+
+You can now start generating data/event streams for your Firehose delivery.
+
+    * Region: `us-east-1`
+    * Stream/delivery stream : `aws-labseries-demo-stream`
+    * Records per second : `2000`
+    * Record template: Use the json template below: 
 
 ```
-
 {
   "uuid": "{{random.uuid}}",
   "device_ts": "{{date.utc("YYYY-MM-DD HH:mm:ss.SSS")}}",
@@ -147,12 +158,30 @@ Once the tools send ~ 100,000 messages, you can click on - **Stop sending data t
 
 ```
 
-## Validate that data has arrived in S3
+What does this data/message look like? 
+What type of application could this send a data stream similar to  this?
 
-After few moments GoTo S3 console:https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+You're done! Click on **Send Data** to start sending data streams for Firehose!
 
-* Click - **yourname-datalake-demo-bucket > Data**
-* There should be a folder called **raw** created > Open it and keep navigating, you will notice that firehose has dumped the data in S3 using **yyyy/mm/dd/hh** partitioning 
+Once the tools send ~ 100,000 messages, you can **Stop sending data to Kinesis**.
+
+
+
+## 4(A) Validate that data has arrived in S3
+
+Let's see if Firehose has successfully delivered data to your S3 bucket **YOUR_USERNAME-datalake-demo-bucket**. 
+
+* Open the S3 Console again: https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+* Open your bucket **YOUR_USERNAME-datalake-demo-bucket** and the **data** folder.
+* You will find a subfolder called **raw**. Click through the date-partitioned folders (2019 > 09 > 27 > 15) until you find a list of files named *aws-labseries-demo-stream-xx-xx-xx*.
+
+![Firehose output](./lab1/img/firehose-output.png)
+
+## Extra Credit!
+
+1. Create your own custom data template to generate data streams similar to your current project applications. KDG extends from [Faker.js](https://github.com/marak/Faker.js/). You can use this to generate stub names, timestamps, addresses etc.
+
+
 
 ---
 
@@ -182,10 +211,8 @@ In this step we will configure a traffic-generator application, Kinesis Data Gen
     * **Region: us-east-1**
     * **Stream/delivery stream : sg-summit-demo-stream**
     * Records per second : 2000
-    * **Record template  : **In the **big text area**, add the following json template
-    * Click - **Send Data - do not click without pasting the below bit of template in the big text area**
+    * **Record template  : **In the **big text area**, add the following json template.
 
-Once the tools send ~ 100,000 messages, you can click on - **Stop sending data to Kinesis**
 
 ```
 
@@ -207,7 +234,11 @@ Once the tools send ~ 100,000 messages, you can click on - **Stop sending data t
 
 ```
 
-## Validate that data has arrived in S3
+You're done! Click on **Send Data** to start sending data streams for Firehose!
+
+Once the tools send ~ 100,000 messages, you can **Stop sending data to Kinesis**.
+
+## 4(B) Validate that data has arrived in S3
 
 After few moments GoTo S3 console:https://s3.console.aws.amazon.com/s3/home?region=us-east-1
 
@@ -215,5 +246,5 @@ After few moments GoTo S3 console:https://s3.console.aws.amazon.com/s3/home?regi
 * There should be a folder called **raw** created > Open it and keep navigating, you will notice that firehose has dumped the data in S3 using **yyyy/mm/dd/hh** partitioning 
 
 
-
+Extra Credits
 
