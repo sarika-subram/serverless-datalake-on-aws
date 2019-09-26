@@ -106,7 +106,7 @@ Lets query Glue tables using Athena.
 	```
 * How many counts do you have for the following activites: *Traveling* and *Running*? Share this with your instructor.
 
-## Extra 2: Analyze Glue tables using SQL clients
+## Extra Credit: Analyzing SQL data stores using Glue 
 
 
 
