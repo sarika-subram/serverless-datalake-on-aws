@@ -2,6 +2,29 @@
 A Glue Development Endpoint is an environment for you to develop and test your Glue scripts / jobs.
 Configuring a Development Endpoint spins up the necessary network and machines to simplify ETL scripting with AWS resources in a VPC. 
 
+In this lab, you will be joining two separate dataframes: one from the `raw` datasets from Firehose against a manually uploaded reference dataset.
+
+## 0. Upload and Crawl a Reference Dataset
+In this step, you will upload and crawl a new Glue dataset from a manual JSON file.
+
+1. Open your S3 Bucket **YOUR_USERNAME-datalake-demo-bucket*: https://s3.console.aws.amazon.com/s3/home?region=us-east-1#
+2. Open the subfolder **data**, and create a subfolder called **reference_data**. Your bucket should look like this: 
+
+    ```
+    *--YOUR_USERNAME-datalake-demo-bucket
+         │
+         ├── data/
+         │     └── raw/
+         │     └── reference_data/
+         │     
+         │
+         └── (..other project assets: code etc.)
+    ```
+3. Download the following file [tracks_list.json](https://raw.githubusercontent.com/unnipillai/techfest-building-serverless-datalake-on-aws/master/tracks_list.json), and upload it into the `reference_data/` folder.
+
+4. Open the Glue crawler console. Select the crawler you have created **CrawlDataFromKDG** and **Run crawler**.
+	1. The crawlwer picks up new data in the S3 bucket and automatically creates new tables in the database
+
 ## 1. Create Glue Development Endpoint
 In this step you will be creating a glue endpoint to interactively develop Glue ETL scripts using PySpark.
 
