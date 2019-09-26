@@ -1,25 +1,27 @@
 # Part 3 : Catalog 
+In this Lab, we will explore using Glue for serverless ETL. We will be using the data previously stored in S3: **YOUR_USERNAME-datalake-demo-bucket** and to make it queriable using standard SQL. 
 
-## Create IAM Role
+## 1. Create IAM Role
 
-In this step we will navigate to IAM Console & create a new Glue service role, this allows AWS Glue to access data sitting in S3 and create necessary entities in Glue catalog.
+First, we will create an IAM Role for the Glue service to access our source data. Glue will also require permissions to create additional entities and datasets in its catalog. 
 
-* GoTo: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles
+* Go to the IAM console: https://console.aws.amazon.com/iam/home?region=us-east-1#/roles. On the navigation bar on the left, select **Roles**.
 * Click - **Create role**
+    * Select type of trusted entity: **AWS Service**
     * Choose the service that will use this role: **Glue**
+        ![Where is Glue](./img/where-is-glue.png)
+
     * Click - **Next: Permissions**
-    * Search for - **AmazonS3FullAccess**
-        * Select **Checkbox**
-    * Search for - **AWSGlueServiceRole**
-        * Select **Checkbox**
+    * Check **two (2)** permissions: **AmazonS3FullAccess** and **AWSGlueServiceRole**
     * Click - **Next: Tags**
 	    * Leave as default, no changes here
     * Click - **Next: Review**
-    * Role name: **AWSGlueServiceRoleDefault**
+    * Role name: **AWSGlueServiceRoleLab**
     * make sure that are two policies attached to this role (**AmazonS3FullAccess**, **AWSGlueServiceRole**)
     * Click - **Create role**
+    ![GlueRolePermissions](./img/GlueRolePolicies.png)
 
-
+You will later use this Role *AWSGlueServiceRoleLab* for running Glue tasks.
 
 ## Create AWS Glue Crawlers
 
@@ -39,7 +41,7 @@ In this step, we will navigate to AWS Glue Console & create glue crawlers to dis
         * Click - **Next**
     * IAM Role
         * Choose: **Create an IAM role**
-        * Role Name: **AWSGlueServiceRoleDefault**
+        * Role Name: **AWSGlueServiceRoleLab**
         * Click - **Next**
     * Schedule
         * Frequency: **Run on demand**
