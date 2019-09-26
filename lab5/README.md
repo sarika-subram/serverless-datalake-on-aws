@@ -44,7 +44,7 @@ Welcome to the QuickSight console!
 
 ###  Visualization 1: Heat map of users and tracks they are listening to
 
-In this step, we will create a visualization that show us which users are listening to repetitive tracks
+In this step, we will create a visualization that show us which users are listening to repetitive tracks.
 
 * On the bottom-left panel - **Visual types**
     * Hover on icon there to see names of the visualizations
@@ -63,7 +63,7 @@ If you hover on dark blue patches on the heatmap you will see that those particu
 
 ### Visualization 2: Tree map of most played Artist Names
 
-In this step we will create a visualization that shows who are the host played artists
+In this step we will create a visualization that shows who are the most played artists
 
 * On top-left - Click on '**+ Add**' > **Add Visual**, this will add a new panel to the right pane
 * On the bottom-left panel - **Visual types**
