@@ -175,11 +175,22 @@ Let's see if Firehose has successfully delivered data to your S3 bucket **YOUR_U
 * Open your bucket **YOUR_USERNAME-datalake-demo-bucket** and the **data** folder.
 * You will find a subfolder called **raw**. Click through the date-partitioned folders (2019 > 09 > 27 > 15) until you find a list of files named *aws-labseries-demo-stream-xx-xx-xx*.
 
-![Firehose output](./lab1/img/firehose-output.png)
+![Firehose output](./img/firehose-output.png)
+
 
 ## Extra Credit!
 
 1. Create your own custom data template to generate data streams similar to your current project applications. KDG extends from [Faker.js](https://github.com/marak/Faker.js/). You can use this to generate stub names, timestamps, addresses etc.
+
+2. Open and view the contents of the data files. 
+
+   ```
+   {  "uuid": "a040cdd7-cc47-435f-9e5e-938da65e59a3",  "device_ts": "2019-09-26 15:49:32.004",  "device_id": 19,  "device_temp": 34,  "track_id": 22,    "activity_type": "Sitting"}
+   {  "uuid": "e5d411f7-daf2-4801-8153-ce9ea560d66d",  "device_ts": "2019-09-26 15:49:32.006",  "device_id": 10,  "device_temp": 32,  "track_id": 1,    "activity_type": "Walking"}
+   ...
+   ```
+   
+   How can we find all unique activities with `"device_id":  10`?
 
 
 
