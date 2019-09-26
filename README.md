@@ -19,9 +19,11 @@ Forked from Author: [Unni Pillai](github.com/unnipillai/techfest-building-server
 
 # Syllabus
 
-1. Lab 1: Ingest and Storage [Open Lab](./lab1)
-2. Lab 2: Process and Orchestration [Open Lab](./lab2)
-3. Lab 3: Catalog Data [Open Lab](./lab3)
+1. Lab 1: Ingest and Storage [Open Labi :arrow_forward:](./lab1)
+2. Lab 2: Process and Orchestration [Open Lab :arrow_forward:](./lab2)
+3. Lab 3: Catalog Data [Open Lab :arrow_forward:](./lab3)
+4. Lab 4: Process Data with Sagemaker [Open Lab :arrow_forward:](./lab4)
+5. Lab 5: Visualize Data [Open Lab :arrow_forward:](./lab5)
 
 # Part 1: Ingest and Storage
 
