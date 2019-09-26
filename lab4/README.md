@@ -1,14 +1,17 @@
 # Part 4 : Transform Data
+A Glue Development Endpoint is an environment for you to develop and test your Glue scripts / jobs.
+Configuring a Development Endpoint spins up the necessary network and machines to simplify ETL scripting with AWS resources in a VPC. 
 
-## Create Glue Development Endpoint
-In this step you will be creating a glue endpoint to interactively develop Glue ETL scripts using PySpark
+## 1. Create Glue Development Endpoint
+In this step you will be creating a glue endpoint to interactively develop Glue ETL scripts using PySpark.
 
 * GoTo : https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=devEndpoints
 * Click - **Add endpoint**
-  * Development endpoint name - **devendpoint1**
-    * IAM role - **AWSGlueServiceRoleDefault**
+  * Development endpoint name - **DevEndpoint1**
+    * IAM role - **AWSGlueServiceRoleLab**
     * Expand - **Security configuration.. parameters**
       * Data processing units (DPUs): **2** (this affects the cost of the running this lab)
+      * A single Data Processing Unit (DPU) provides 4 vCPU and 16 GB of memory.
   * Click - **Next**
   * Networking screen :
     * Choose - **Skip networking information**
@@ -18,36 +21,42 @@ In this step you will be creating a glue endpoint to interactively develop Glue 
   * Review the settings
     * Click: **Finish**
 
-It will take close to 10 mins for the new Glue console to spin up.
-
+It will take close to 10 mins for the Dev Endpoint to be **READY**.
 You have to wait for this step to complete before moving to next step.
 
-## Create SageMaker Notebooks (Jupyter) for Glue Dev Endpoints
 
-* GoTo: https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=notebooks
+## 2. Create SageMaker Notebooks (Jupyter) for Glue Dev Endpoints
+
+In this step, we will launch notebook instances to use as our workspace. We will be using Sagemaker notebook instances in this lab. 
+
+* On the navigation on the Left under *Dev endpoints*, click on **Notebooks**.
 * Select tab : **Sagemaker notebooks**
 * Click: **Create notebook**
-  * Notebook name: **notebook1**
+  * Notebook name: aws-glue-**notebook1**
   * Attach to development endpoint: **devendpoint1**
   * Choose: **Create an IAM role**
-  * IAM Role: **notebook1**
+  * IAM Role: *AWSGlueServiceSageMakerNotebookRole*-**default**
   * VPC (optional): Leave blank
   * Encryption key (optional): Leave blank
   * Click: **Create Notebook**
 
-This will take few minutes, wait for this to finish
+This will take few minutes. Wait for the notebook instance to be *Ready*.
 
-## Launch Jupyter Notebook
-- Download and save this file locally on your laptop : [summit-techfest-datalake-notebook.ipynb](summit-techfest-datalake-notebook.ipynb)
-- GoTo: https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=notebooks
-- Click - **aws-glue-notebook1**
-- Click - **Open**, This will open a new tab
+## Upload a Jupyter Notebook on your SageMaker instance
+
+- Download and save this file locally on your laptop: [datalake-notebook.ipynb](./datalake-notebook.ipynb)
+
+- In the Notebooks console, click on the notebook name you have just created: - **aws-glue-notebook1**
+- Click on **Open** to launch the web interface for the notebook instance.
+
+![Notebook instance](./img/notebook-console.png)
+
+
 - On Sagemaker Jupyter Notebook 
-  - Click - Upload (right top part of screen)
-  - Browse and upload **summit-techfest-datalake-notebook.ipynb** which you downloaded earlier
-  - Click - **Upload** to confirm the download
-  - Click on **summit-techfest-datalake-notebook.ipynb ** to open the notebook
-  - Make sure it says **'Sparkmagic (PySpark)'** on top right part of the notebook, this is the name of the kernel Jupyter will use to execute code blocks in this notebook
+  - Upload the sample `datalake-notebook.ipynb` you downloaded earlier.
+  - Click on **datalake-notebook.ipynb** to open the notebook.
+  - Make sure it says **'Sparkmagic (PySpark)'** on top right part of the notebook.
+    This is the name of the kernel Jupyter will use to execute code blocks in this notebook
 
 
 **Follow the instructions on the notebook**
