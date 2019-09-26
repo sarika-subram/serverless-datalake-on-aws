@@ -4,30 +4,28 @@
 
 In this step, we will navigate to S3 Console and create the S3 bucket used throughout this demo.
 
-Login to AWS Console: https://console.aws.amazon.com/console/home?region=us-east-1
+First, navigate to S3 Console & create a new bucket in us-east-1 region :
 
-Navigate to S3 Console & Create a new bucket in us-east-1 region :
-
-* GoTo : https://s3.console.aws.amazon.com/s3/home?region=us-east-1
-* Click - **Create Bucket**
-    * Bucket Name : **yourname-datalake-demo-bucket**
+* Open the s3 console : https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+* Click on **:heavy_plus_sign: Create bucket**
+    * Bucket Name : **YOUR_USERNAME-datalake-demo-bucket**
     * Region : **US EAST (N. Virginia)**
-    * Click **Create** (bottom left)
-* Adding reference data
-    * Open - **yourname-datalake-demo-bucket**
-        * Click - **Create folder**
-            * New folder called : **data**
-            * Click - **Save**
-    * Open - **data**
-        * Click - **Create folder**
-            * New folder : **reference_data**
-            * Click - **Save**
-    * Open - **reference_data**
-        * download this file locally : [tracks_list.json](tracks_list.json)
-        * Click - Upload
-            * Click **Add files** & upload the **tracks_list.json** file here
-            * Click **Upload** (bottom left)
+    * and proceed to create the bucket: **Create** (bottom left)
 
+We now have an S3 bucket named `YOUR_USERNAME-datalake-demo-bucket`. In it, we will create a subfolder for storing data. 
+We will use this folder structure for this lab series.
+
+```
+*--YOUR_USERNAME-datalake-demo-bucket
+         │
+         ├── data/
+         │     └── raw_data/
+         │     └── reference_data/
+         │     └── training_data/  
+         │
+         └── ..other project assets: code etc.
+         
+```
 
 
 ## Create Kinesis Firehose
