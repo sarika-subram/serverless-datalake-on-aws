@@ -4,6 +4,11 @@ Configuring a Development Endpoint spins up the necessary network and machines t
 
 In this lab, you will be joining two separate dataframes: one from the `raw` datasets from Firehose against a manually uploaded reference dataset.
 
+The raw dataset contains list of tracks, devices and activities from Firehose. 
+The reference dataset contains a list of tracks, track titles and artist names.
+
+You will be using Glue to perform basic transformations such as filtering and joining. 
+
 ## 0. Upload and Crawl a Reference Dataset
 In this step, you will upload and crawl a new Glue dataset from a manual JSON file.
 
@@ -87,9 +92,10 @@ This will take few minutes. Wait for the notebook instance to be *Ready*.
 
 ## Validate - Transformed / Processed data has arrived in S3
 
-Once the ETL script has ran successfully.
-console:https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+Once the ETL script has ran successfully, you can inspect the output of the SparkSQL transformations.
 
-* Click - **yourname-datalake-demo-bucket > data**
-* There should be a folder called **processed-data** created here > Open it & ensure that .parquet files are created in this folder.
+1. Look into your S3 Bucket: **YOUR_USERNAME-datalake-demo-bucket/data/processed_data**
+2. Inspect the new Glue table processed_data using Athena
+
+![output data](./img/processed_data.png)
 
