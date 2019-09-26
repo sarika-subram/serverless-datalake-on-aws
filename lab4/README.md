@@ -95,7 +95,7 @@ This will take few minutes. Wait for the notebook instance to be *Ready*.
 Once the ETL script has ran successfully, you can inspect the output of the SparkSQL transformations.
 
 1. Look into your S3 Bucket: **YOUR_USERNAME-datalake-demo-bucket/data/processed_data**
-2. Inspect the new Glue table processed_data using Athena
+2. Inspect the new Glue table `processed_data` using Athena
 
 ![output data](./img/processed_data.png)
 
