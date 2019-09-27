@@ -72,7 +72,7 @@ This will take few minutes. Wait for the notebook instance to be *Ready*.
 
 ## Upload a Jupyter Notebook on your SageMaker instance
 
-- Download and save this file locally on your laptop: [datalake-notebook.ipynb](./datalake-notebook.ipynb)
+- Download and save this file locally on your laptop: [datalake-notebook.ipynb](https://raw.githubusercontent.com/czhc/serverless-datalake-on-aws/master/lab4/datalake-notebook.ipynb)
 
 - In the Notebooks console, click on the notebook name you have just created: - **aws-glue-notebook1**
 - Click on **Open** to launch the web interface for the notebook instance.
