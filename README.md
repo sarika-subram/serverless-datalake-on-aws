@@ -68,4 +68,6 @@ Make sure you bring down / delete all resources created as part of this lab
 * Cognito Userpool
 	* GoTo: https://us-west-2.console.aws.amazon.com/cognito/users/?region=us-west-2#/
 
-
+* [extra] VPC Endpoint: 
+	* GoTo: https://console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:sort=vpcEndpointId
+	
