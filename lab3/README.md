@@ -108,4 +108,8 @@ Lets query Glue tables using Athena.
 ## Extra Credit: Analyzing SQL data stores using Glue 
 
 
+## Additional Materials
+
+1. [Configuring Interface Endpoints for Athena](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)
+
 
