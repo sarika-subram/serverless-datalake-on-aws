@@ -33,10 +33,13 @@ We will use this folder structure for this lab series.
 
 To create a subfolder, 
 
-1. Click on the bucket name: **YOUR_USERNAME-datalake-demo-bucket"
+1. Click on the bucket name: **YOUR_USERNAME-datalake-demo-bucket**
 2. You are now looking at the contents of your bucket. It is currently empty.
 3. Click on **:heavy_plus_sign: Create folder**
-4. Enter the value `data` into the text field. Click on **Save**
+4. Enter the value `data` into the text field. 
+   * You can choose *AES-256* SSE with Amazon S3-Managed Keys for this step
+   * Click on **Save**
+   
 
 You now have the above bucket structure.
 
@@ -102,6 +105,7 @@ In this step we will configure an application, Kinesis Data Generator to generat
 
 * **Configure Amazon Cognito** for Kinesis Data Generator - In this step we will launch a cloud formation stack that will configure Cognito. This cloudformation scripts launches in **Oregon region** (No need to change this region)
     * Goto : https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Kinesis-Data-Generator-Cognito-User&templateURL=https://s3-us-west-2.amazonaws.com/kinesis-helpers/cognito-setup.json
+    * Note that this deploys Resources in the *us-west-2* region
     * Click - **Next**
     * **Specify stack details**. In this step you will create a mock admin for your data generator. Use a simple admin/password combination and keep it handy.
         * Stack name: (autofilled) **Kinesis-Data-Generator-Cognito-User**
@@ -126,6 +130,9 @@ When the Stack info status changes to to **Create_Complete**:
 
 
 Go to the **Outputs** tab. The Data Generator is deployed on the **KinesisDataGeneratorUrl**.
+
+> [Kinesis Data Generator webpage](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html?upid=us-west-2_UwD6AyNOq&ipid=us-west-2:4ea203e4-c4a4-4b1e-a260-4fd17420f67e&cid=6af31pvt8srrhhuvs1vh70thhj&r=us-west-2)
+
 Click on this to open the Data Generator.
 
 * On Amazon Kinesis Data Generator homepage, **Login** with your username & password.
@@ -172,6 +179,7 @@ Once the tools send ~ 100,000 messages, you can **Stop sending data to Kinesis**
 Let's see if Firehose has successfully delivered data to your S3 bucket **YOUR_USERNAME-datalake-demo-bucket**. 
 
 * Open the S3 Console again: https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+   * Note that your region should be back to `us-east-1`
 * Open your bucket **YOUR_USERNAME-datalake-demo-bucket** and the **data** folder.
 * You will find a subfolder called **raw**. Click through the date-partitioned folders (2019 > 09 > 27 > 15) until you find a list of files named *aws-labseries-demo-stream-xx-xx-xx*.
 
