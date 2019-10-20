@@ -107,7 +107,7 @@ Lets query Glue tables using Athena.
 	```
 	SELECT activity_type,
 		 count(activity_type)
-	FROM raw
+	FROM data
 	GROUP BY  activity_type
 	ORDER BY  activity_type
 	```
