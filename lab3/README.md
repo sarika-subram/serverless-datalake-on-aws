@@ -74,7 +74,7 @@ Let's view the data we crawled with Glue. The data is available as a Glue Databa
 * On the navigation on the left, select **Databases**
     * Click on **awslabs_db**
 * Let's view the tables and their contents in this database. 
-    * Click on **Tables in summitdb**. There is table named **data**.
+    * Click on **Tables in awslabs_db**. There is table named **data**.
     * View the data table. Explore the table schema for your dataset and see that it matches your expected schema and size.
     * Inspect the values for `averageRecordSize`, `recordCount`, `compressionType`
     
@@ -86,6 +86,14 @@ How can we query the data table?
 Lets query Glue tables using Athena.
 
 * Open the Athena console : https://us-east-1.console.aws.amazon.com/athena/home?region=us-east-1#query
+
+* You may have to first create an output location for athena queries:
+    * ![setup_query_result](./img/setup_query_result.png)
+    * Go to S3 console:
+    * Create bucket with name `aws-athena-query-results-<YOUR_ACCOUNT_ID>-us-east-1`
+    * You can get your account ID from the IAM console
+    * use this bucket name as the output path
+    
 * On the left panel (**Database**) drop down , select **awslabs_db** > select table **data**
 * Click on **3 dots** (3 vertical dots) > Select **Preview Table**
     ![three dots](./img/three_dots_preview.png)
