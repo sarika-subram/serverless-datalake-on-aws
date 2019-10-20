@@ -29,6 +29,8 @@ In this step, you will upload and crawl a new Glue dataset from a manual JSON fi
 
 4. Open the Glue crawler console. Select the crawler you have created **CrawlDataFromKDG** and **Run crawler**.
 	1. The crawlwer picks up new data in the S3 bucket and automatically creates new tables in the database
+	2. Notice how this creates two new Glue tables for `raw` and `reference_data`. 
+	
 
 ## 1. Create Glue Development Endpoint
 In this step you will be creating a glue endpoint to interactively develop Glue ETL scripts using PySpark.
