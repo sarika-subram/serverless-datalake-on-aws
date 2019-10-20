@@ -25,7 +25,7 @@ In this step, you will upload and crawl a new Glue dataset from a manual JSON fi
          │
          └── (..other project assets: code etc.)
     ```
-3. Download the following file [tracks_list.json](https://raw.githubusercontent.com/unnipillai/techfest-building-serverless-datalake-on-aws/master/tracks_list.json), and upload it into the `reference_data/` folder.
+3. Download the following file [tracks_list.json](https://raw.githubusercontent.com/czhc/serverless-datalake-on-aws/master/lab4/tracks_list.json), and upload it into the `reference_data/` folder.
 
 4. Open the Glue crawler console. Select the crawler you have created **CrawlDataFromKDG** and **Run crawler**.
 	1. The crawlwer picks up new data in the S3 bucket and automatically creates new tables in the database
