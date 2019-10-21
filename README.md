@@ -70,4 +70,10 @@ Make sure you bring down / delete all resources created as part of this lab
 
 * [extra] VPC Endpoint: 
 	* GoTo: https://console.aws.amazon.com/vpc/home?region=us-east-1#Endpoints:sort=vpcEndpointId
+
+* [extra] RDS clusters: 
+	* GoTo: https://console.aws.amazon.com/rds/home?region=us-east-1#databases:
+	
+* [extra] Elastic IPs: 
+	* GoTo: https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#SecurityGroups:sort=groupId
 	
