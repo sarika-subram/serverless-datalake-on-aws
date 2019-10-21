@@ -120,4 +120,13 @@ Lets query Glue tables using Athena.
 
 1. [Configuring Interface Endpoints for Athena](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)
 
-
+2. Configure an RDS connection for Glue
+	1. Create a set of Private Subnets
+	2. Create a NAT Gateway
+	3. Create a Route Table with `0.0.0.0/0` pointing to NAT Gateway. Associate RT to Private Subnets
+	4. Create a VPC Endpoint for s3. Associate the earlier RT to this Endpoint.
+	5. Create an RDS Cluster. Avoid using Easy Create - use Standard Create to create an initial database `glue_db`
+	6. After the RDS writer is *created*, go to Glue console and *Add connection*
+	7. Enter the relevant values. :ballot_box_with_check: on Require SSL if needed.
+	8. Fill in the relevant DB auth values, using the earlier database name `glue_db`
+	9. Complete the form and *Test Connection*
