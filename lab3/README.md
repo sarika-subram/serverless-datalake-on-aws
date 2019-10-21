@@ -131,7 +131,7 @@ Lets query Glue tables using Athena.
 	8. Fill in the relevant DB auth values, using the earlier database name `glue_db`
 	9. Complete the form and *Test Connection*
 
-3. Create a Job to import `reference_data` in s3 to a SQL table in RDS Aurora
+3. Create a Glue Job to import `reference_data` in s3 to a SQL table in RDS Aurora
 	1. Finish Extra Materials #2
 	1. In the Glue console left sidebar, click on **Jobs**.
 	1. Click **Add job**. 
