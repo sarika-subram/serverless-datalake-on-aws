@@ -17,6 +17,8 @@ Login to Amazon Quick Sight Console & complete the registration & sign-up
 		* Amazon S3: Select **YOUR_USERNAME-datalake-demo-bucket** > **Select buckets**
 		* **Go to Amazon Quicksight**
 		
+Note: if you have errors creating a Quicksight account, it is possible that the username has already been in-use. Try again with a unique username
+
 Welcome to the QuickSight console!
 
 ![QuickSight console](./img/qs-console.png)
