@@ -113,10 +113,8 @@ Lets query Glue tables using Athena.
 	```
 * How many counts do you have for the following activites: *Traveling* and *Running*? Share this with your instructor.
 
-## Extra Credit: Analyzing SQL data stores using Glue 
 
-
-## Additional Materials
+## Extra Credits 
 
 1. [Configuring Interface Endpoints for Athena](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)
 
@@ -146,3 +144,47 @@ Lets query Glue tables using Athena.
 		9. In the Edit Script view, click **Run job**
 		
 	1. Test configuration e.g. from a bastion host. You should see the database `glue_db` with a table for `reference_data`
+
+4. Analyze S3 data directly on Athena without using Glue tables.
+	1. Amazon provides publicly-accessible large datasets via [registry.opendata.aws](https://registry.opendata.aws). These datasets include census data, satelite data, healthcare, social platforms etc.
+	2. Try importing a dataset of customer reviews from amazon.com using the `amazon_reviews_parquet` S3 bucket.
+	3. Run the following command in Athena
+		```
+			CREATE EXTERNAL TABLE `amazon_reviews_parquet`(
+				  `marketplace` string, 
+				  `customer_id` string, 
+				  `review_id` string, 
+				  `product_id` string, 
+				  `product_parent` string, 
+				  `product_title` string, 
+				  `star_rating` int, 
+				  `helpful_votes` int, 
+				  `total_votes` int, 
+				  `vine` string, 
+				  `verified_purchase` string, 
+				  `review_headline` string, 
+				  `review_body` string, 
+				  `review_date` bigint, 
+				  `year` int)
+				PARTITIONED BY ( 
+				  `product_category` string)
+				ROW FORMAT SERDE 
+				  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
+				STORED AS INPUTFORMAT 
+				  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
+				OUTPUTFORMAT 
+				  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+				LOCATION
+				  's3://amazon-reviews-pds/parquet'
+				TBLPROPERTIES (
+				  'transient_lastDdlTime'='1570770352')
+		```
+	4. Create a View for Books from the data: 
+		```
+		CREATE OR REPLACE VIEW "Books" AS
+		SELECT product_title,
+			 star_rating
+		FROM amazon_reviews_parquet
+		WHERE product_category = 'Books'
+		```
+	5. You can now preview a list of Reviews for Books sold on amazon.com
