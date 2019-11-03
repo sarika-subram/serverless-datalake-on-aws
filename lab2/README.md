@@ -1,4 +1,4 @@
-# Part 3 : Catalog 
+# Part 2 : Glue Data Catalog 
 In this Lab, we will explore using Glue for serverless ETL. We will be using the data previously stored in S3: **YOUR_USERNAME-datalake-demo-bucket** and to make it queriable using standard SQL. 
 
 ## 1. Create IAM Role
