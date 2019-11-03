@@ -180,7 +180,12 @@ Lets query Glue tables using Athena.
 				TBLPROPERTIES (
 				  'transient_lastDdlTime'='1570770352')
 		```
-	4. Create a View for Books from the data: 
+	4. Run the repair command to update the metastore for new data:
+		```
+			MSCK REPAIR TABLE amazon_reviews_parquet;
+		```
+		
+	5. Create a View for Books from the data: 
 		```
 		CREATE OR REPLACE VIEW "Books" AS
 		SELECT product_title,
