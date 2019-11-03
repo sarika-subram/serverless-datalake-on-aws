@@ -119,15 +119,16 @@ Lets query Glue tables using Athena.
 1. [Configuring Interface Endpoints for Athena](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint)
 
 2. Configure an RDS connection for Glue
-	1. Create a set of Private Subnets
-	2. Create a NAT Gateway
-	3. Create a Route Table with `0.0.0.0/0` pointing to NAT Gateway. Associate RT to Private Subnets
-	4. Create a VPC Endpoint for s3. Associate the earlier RT to this Endpoint.
-	5. Create an RDS Cluster. Avoid using Easy Create - use Standard Create to create an initial database `glue_db`
-	6. After the RDS writer is *created*, go to Glue console and *Add connection*
-	7. Enter the relevant values. :ballot_box_with_check: on Require SSL if needed.
-	8. Fill in the relevant DB auth values, using the earlier database name `glue_db`
-	9. Complete the form and *Test Connection*
+	1. Create a VPC. You can use the provided [CloudFormation template](./cloudformation_vpc.yaml) or use the following steps:
+		1. Create a set of Private Subnets
+		2. Create a NAT Gateway
+		3. Create a Route Table with `0.0.0.0/0` pointing to NAT Gateway. Associate RT to Private Subnets
+	2. Create a VPC Endpoint for s3. Associate the earlier RT to this Endpoint.
+	3. Create an RDS Cluster. Avoid using Easy Create - use Standard Create to create an initial database `glue_db`
+	4. After the RDS writer is *created*, go to Glue console and *Add connection*
+	5. Enter the relevant values. :ballot_box_with_check: on Require SSL if needed.
+	6. Fill in the relevant DB auth values, using the earlier database name `glue_db`
+	7. Complete the form and *Test Connection*
 
 3. Create a Glue Job to import `reference_data` in s3 to a SQL table in RDS Aurora
 	1. Finish Extra Materials #2
