@@ -75,7 +75,7 @@ In the meantime, check out the [differences](https://docs.aws.amazon.com/glue/la
 
 ## Upload a Jupyter Notebook on your SageMaker instance
 
-- Download and save this file locally on your laptop: [datalake-notebook.ipynb](https://raw.githubusercontent.com/czhc/serverless-datalake-on-aws/master/lab4/datalake-notebook.ipynb)
+- Download and save this file locally on your laptop: [datalake-notebook.ipynb](https://raw.githubusercontent.com/czhc/serverless-datalake-on-aws/master/lab3/datalake-notebook.ipynb)
 
 - In the Notebooks console, click on the notebook name you have just created: - **aws-glue-notebook1**
 
