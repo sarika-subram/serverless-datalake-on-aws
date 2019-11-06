@@ -1,4 +1,4 @@
-# Monitoring data transfer costs using Athena
+# Querying your AWS Activity using Athena
 
 1. Run the following query in Athena to create an external table to the cloudtrail s3 bucket. Modify the values for `YOUR_ATHENA_TABLE_NAME` and `YOUR_S3_CLOUDTRAIL_BUCKET`
 
