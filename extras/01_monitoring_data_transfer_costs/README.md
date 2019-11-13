@@ -5,15 +5,18 @@
 1. Create a bucket `<username>-s3-dto-logs`. 
     1. This bucket should only be accessible to audit-level users. You can set this as Bucket policy or add a Deny rule in your IAM policies.
 
-2. Create a source s3 bucket to store source data, or you can modify an existing bucket. In step 2: Configure options, turn on Server access logging. 
+2. Create a source s3 bucket `<username-s3-demo-bucket` to store source data, or you can modify an existing bucket. 
+    1. In step 2: Configure options, turn on Server access logging. 
 
     ![step 2](./img/1_configure_access_logging_2.png)
 
-    In this demo, my bucket `-demo-bucket` hosts my data.
+    Set the target bucket as the `-dto-logs` bucket you created in **Step 1**.
 
-    Set the target bucket as the `-dto-logs` bucket you created in Step 1.
+3. Perform some tasks to upload/remove data from the source bucket `-demo-bucket`. For example, download / add / or delete objects from the bucket.
 
-3. Perform some tasks to upload/remove data from the source bucket. You should now see new logs in your target bucket. A access log structure looks like this: 
+
+    Inspect the `-dto-log` bucket. You should now see new logs in your target bucket. 
+    An access log structure looks like this: 
 
     ```      
       79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be awsexamplebucket [06/Feb/2019:00:00:38 +0000] 192.0.2.3 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be 3E57427F3EXAMPLE REST.GET.VERSIONING - "GET /awsexamplebucket?versioning HTTP/1.1" 200 - 113 - 7 - "-" "S3Console/0.4" - 
@@ -22,9 +25,14 @@
     
     The fields are listed [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/LogFormat.html).
     
-4. Open the Athena console. Configure a result bucket in s3 for Athena if you see this warning.
+4. Open the Athena console. 
 
-    ![step 4](./img/4_configure_result_bucket.png)
+    1. If you see this warning, configure a result bucket to store Athena query results.
+        Create a new s3 bucket `aws-athena-query-results-<ACCOUNT_ID>-us-east-1`.
+
+    	![step 4](./img/4_configure_result_bucket.png)
+
+	![step 4](./img/4_2_add_result_bucket_settings.png)
 
 5. Execute the following query to create a database: 
 
