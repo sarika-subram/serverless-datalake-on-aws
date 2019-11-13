@@ -1,5 +1,7 @@
 # Monitoring data transfer costs using Athena and S3 Bucket Access Logging
 
+![Architecture](./img/architecture.png)
+
 1. Create a bucket `<username>-s3-dto-logs`. 
     1. This bucket should only be accessible to audit-level users. You can set this as Bucket policy or add a Deny rule in your IAM policies.
 
