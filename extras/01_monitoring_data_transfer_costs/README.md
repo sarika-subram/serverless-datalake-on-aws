@@ -1,42 +1,78 @@
-# Querying your AWS Activity using SQL on Athena
+# Monitoring data transfer costs using Athena and S3 Bucket Access Logging
 
-1. Run the following query in Athena to create an external table to the cloudtrail s3 bucket. Modify the values for `YOUR_ATHENA_TABLE_NAME` and `YOUR_S3_CLOUDTRAIL_BUCKET`
+1. Create an s3 bucket. In step 2: Configure options, turn on Server access logging. You can also update an existing bucket to enable server access logging.
 
-```
-CREATE EXTERNAL TABLE `<YOUR_ATHENA_TABLE_NAME>` (
-  `eventversion` string COMMENT 'from deserializer', 
-  `useridentity` struct<type:string,principalid:string,arn:string,accountid:string,invokedby:string,accesskeyid:string,username:string,sessioncontext:struct<attributes:struct<mfaauthenticated:string,creationdate:string>,sessionissuer:struct<type:string,principalid:string,arn:string,accountid:string,username:string>>> COMMENT 'from deserializer', 
-  `eventtime` string COMMENT 'from deserializer', 
-  `eventsource` string COMMENT 'from deserializer', 
-  `eventname` string COMMENT 'from deserializer', 
-  `awsregion` string COMMENT 'from deserializer', 
-  `sourceipaddress` string COMMENT 'from deserializer', 
-  `useragent` string COMMENT 'from deserializer', 
-  `errorcode` string COMMENT 'from deserializer', 
-  `errormessage` string COMMENT 'from deserializer', 
-  `requestparameters` string COMMENT 'from deserializer', 
-  `responseelements` string COMMENT 'from deserializer', 
-  `additionaleventdata` string COMMENT 'from deserializer', 
-  `requestid` string COMMENT 'from deserializer', 
-  `eventid` string COMMENT 'from deserializer', 
-  `resources` array<struct<arn:string,accountid:string,type:string>> COMMENT 'from deserializer', 
-  `eventtype` string COMMENT 'from deserializer', 
-  `apiversion` string COMMENT 'from deserializer', 
-  `readonly` string COMMENT 'from deserializer', 
-  `recipientaccountid` string COMMENT 'from deserializer', 
-  `serviceeventdetails` string COMMENT 'from deserializer', 
-  `sharedeventid` string COMMENT 'from deserializer', 
-  `vpcendpointid` string COMMENT 'from deserializer')
-COMMENT 'CloudTrail table for aws-s3-bucket-access-logging-118942357420 bucket'
-ROW FORMAT SERDE 
-  'com.amazon.emr.hive.serde.CloudTrailSerde' 
-STORED AS INPUTFORMAT 
-  'com.amazon.emr.cloudtrail.CloudTrailInputFormat' 
-OUTPUTFORMAT 
-  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION
-  's3://<YOUR_S3_CLOUDTRAIL_BUCKET>/AWSLogs/118942357420/CloudTrail'
-TBLPROPERTIES (
-  'classification'='cloudtrail', 
-  'transient_lastDdlTime'='1571893918')
-```
+2. Set a target bucket to store the access logs. This should ideally be restricted to audit-level Principals.
+
+3. Perform some tasks to upload/remove data from the source bucket. You should now see new logs in your target bucket. A access log structure looks like this: 
+
+    ```      
+      79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be awsexamplebucket [06/Feb/2019:00:00:38 +0000] 192.0.2.3 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be 3E57427F3EXAMPLE REST.GET.VERSIONING - "GET /awsexamplebucket?versioning HTTP/1.1" 200 - 113 - 7 - "-" "S3Console/0.4" - 
+    ```
+    
+4. Open the Athena console. Configure a result bucket in s3 for Athena if you see this warning
+
+5. Execute the following query to create a database: 
+    ```
+      create database s3_access_logs_db;
+    ```
+
+6. Execute the following query to load your s3 log data into Athena
+
+    ```
+      CREATE EXTERNAL TABLE IF NOT EXISTS s3_access_logs_db.dto_logs(
+         BucketOwner STRING,
+         Bucket STRING,
+         RequestDateTime STRING,
+         RemoteIP STRING,
+         Requester STRING,
+         RequestID STRING,
+         Operation STRING,
+         Key STRING,
+         RequestURI_operation STRING,
+         RequestURI_key STRING,
+         RequestURI_httpProtoversion STRING,
+         HTTPstatus STRING,
+         ErrorCode STRING,
+         BytesSent BIGINT,
+         ObjectSize BIGINT,
+         TotalTime STRING,
+         TurnAroundTime STRING,
+         Referrer STRING,
+         UserAgent STRING,
+         VersionId STRING,
+         HostId STRING,
+         SigV STRING,
+         CipherSuite STRING,
+         AuthType STRING,
+         EndPoint STRING,
+         TLSVersion STRING
+      ) 
+      ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+      WITH SERDEPROPERTIES (
+               'serialization.format' = '1', 'input.regex' = '([^ ]*) ([^ ]*) \\[(.*?)\\] ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (-|[0-9]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) (\"[^\"]*\") ([^ ]*)(?: ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*))?.*$' )
+      LOCATION 's3://cedchan-s3-dto-logs/'
+
+    ```
+    
+    You may need to execute `msck repair table s3_access_logs_db.dto_logs` to load new logs added to the bucket.
+
+7. View the schema of your external table and preview a sample of the data
+
+8.  Execute the following query to group your s3 data transfers by region, User-Agents, destination and data transfer size over this month.
+
+    ```
+    SELECT remoteip,
+         SUBSTR(useragent, 1, 15) as useragent,
+         SUM(bytessent) AS uploadtotal_bytes,
+         SUM(objectsize) AS downloadtotal_bytes,
+         SUM(bytessent + objectsize) AS total_bytes
+    FROM s3_access_logs_db.dto_logs
+    WHERE bucket = 'cedchan-s3-dto-demo-bucket'
+            AND parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
+                BETWEEN parse_datetime('2019-11-01','yyyy-MM-dd') AND parse_datetime('2019-11-30','yyyy-MM-dd')
+    GROUP BY  remoteip, useragent;
+      
+    ```
+    
+    You can now view information such as the source of outgoing requests and size of downloaded data. 
