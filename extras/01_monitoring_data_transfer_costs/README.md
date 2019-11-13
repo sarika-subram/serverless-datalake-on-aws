@@ -1,11 +1,11 @@
 # Monitoring data transfer costs using Athena and S3 Bucket Access Logging
 
 1. Create a bucket `<username>-s3-dto-logs`. 
-    1. This bucket should only be accessible to audit-level users.
+    1. This bucket should only be accessible to audit-level users. You can set this as Bucket policy or add a Deny rule in your IAM policies.
 
 2. Create a source s3 bucket to store source data, or you can modify an existing bucket. In step 2: Configure options, turn on Server access logging. 
 
-    ![step 2](./img/1_configure_access_logging.png)
+    ![step 2](./img/1_configure_access_logging_2.png)
 
     In this demo, my bucket `-demo-bucket` hosts my data.
 
