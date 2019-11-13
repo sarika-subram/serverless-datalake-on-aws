@@ -85,7 +85,13 @@
     
     You can now view information such as the source of outgoing requests and size of downloaded data. 
     
-    ![step 8](./img/8_results.png)
+    ![step 8](./img/8_2_results_2.png)
+
+    In this example, you can see that: 
+
+	1. There is a significant file upload (2MB) via the S3 Console 
+	2. There are significant file downloads from 2 hosts (my EC2 instances) with IPs 34.230.x.x and 35.153.x.x at 6GB and 0.49GB each - this is because I was executing a scrip using the `aws-cli` tool to download my S3 files.
+
 
  9. As new logs are added to your audit bucket, you may need to update the Hive metadata to fetch the new logs in Athena.
     Run `MSCK REPAIR TABLE s3_access_logs_db.dto_logs` and re-execute step 8.
