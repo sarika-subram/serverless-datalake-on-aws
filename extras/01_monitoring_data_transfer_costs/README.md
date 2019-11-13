@@ -2,7 +2,7 @@
 
 1. Create a source s3 bucket to store source data. Or you can modify an existing bucket. In step 2: Configure options, turn on Server access logging. 
 
-    ![step 1](./img/1_configure_access_logging.png)
+    ![step 1](./img/1_configure_access_logging_2.png)
 
 2. Set a target bucket to store the access logs. This log bucket should be restricted to audit-level Principals.
 
