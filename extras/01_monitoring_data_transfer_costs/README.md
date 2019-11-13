@@ -2,6 +2,8 @@
 
 1. Create a source s3 bucket to store source data. Or you can modify an existing bucket. In step 2: Configure options, turn on Server access logging. 
 
+    ![step 1](./img/1_configure_access_logging.png)
+
 2. Set a target bucket to store the access logs. This log bucket should be restricted to audit-level Principals.
 
 3. Perform some tasks to upload/remove data from the source bucket. You should now see new logs in your target bucket. A access log structure looks like this: 
@@ -15,6 +17,7 @@
     
 4. Open the Athena console. Configure a result bucket in s3 for Athena if you see this warning.
 
+    ![step 4](./img/4_configure_result_bucket.png)
 
 5. Execute the following query to create a database: 
 
@@ -62,6 +65,8 @@
     
 7. View the schema of your external table and preview a sample of the data
 
+    ![step 7](./img/7_dto_logs_schema.png)
+
 8.  Execute the following query to group your s3 data transfers by region, User-Agents, destination and data transfer size over this month.
 
     ```
@@ -80,6 +85,8 @@
     
     You can now view information such as the source of outgoing requests and size of downloaded data. 
     
+    ![step 8](./img/8_results.png)
+
  9. As new logs are added to your audit bucket, you may need to update the Hive metadata to fetch the new logs in Athena.
     Run `MSCK REPAIR TABLE s3_access_logs_db.dto_logs` and re-execute step 8.
     
