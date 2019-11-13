@@ -83,6 +83,8 @@
       
     ```
     
+    Other helpful filters include searching by `requesturi_operation = 'GET'` and `httpsstatus`
+    
     You can now view information such as the source of outgoing requests and size of downloaded data. 
     
     ![step 8](./img/8_2_results_2.png)
