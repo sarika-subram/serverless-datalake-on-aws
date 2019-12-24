@@ -1,12 +1,14 @@
-# Introduction to EC2, S3, and Datalake and Analytics on AWS
+# Building Serverless Data Lakes on AWS
+Forked from Author: [Unni Pillai](github.com/unnipillai/techfest-building-serverless-datalake-on-aws) 
+
+![Architecture Diagram](./img/unnik-techfest-2019-lab-architecture.png)
 
 ### Learning outcomes from this workshop?
-* Launching an EC2 instance
-* Creation and various properties of S3
 * Design serverless data lake architecture
 * Build a data processing pipeline and Data Lake using Amazon S3 for storing data
 * Use Amazon Kinesis for real-time streaming data
 * Use AWS Glue to automatically catalog datasets
+* Run interactive ETL scripts in an Amazon SageMaker Jupyter notebook connected to an AWS Glue development endpoint
 * Query data using Amazon Athena & visualize it using Amazon QuickSight
 
 # Pre-requisites:  
@@ -19,14 +21,16 @@
 
 |Content| Link|
 |:-----|:--:|
-|Module 1: EC2 & S3 |[Open Lab :arrow_forward:](./lab1)|
-|Module 2: Data Analytics |[Open Lab :arrow_forward:](./lab1)|
+|Lab 1: Ingest and Storage |[Open Lab :arrow_forward:](./lab1)|
+|Lab 2: Glue Data Catalog |[Open Lab :arrow_forward:](./lab2)|
+|Lab 3: Serverless Spark on Glue  |[Open Lab :arrow_forward:](./lab3)|
+|Lab 5: Visualize Data |[Open Lab :arrow_forward:](./lab5)|
 
 # Clean Up
 
-Failing to do this will result in incurring AWS usage charges.
+Failing to do this will result in incuring AWS usage charges.
 
-Make sure you bring down/delete all resources created as part of this lab
+Make sure you bring down / delete all resources created as part of this lab
 
 ## Resources to delete
 * Kinesis Firehose Delivery Stream
