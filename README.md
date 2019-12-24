@@ -19,8 +19,8 @@
 
 |Content| Link|
 |:-----|:--:|
-|Module 1: EC2 & S3 |[Open Lab :arrow_forward:](./lab1)|
-|Module 2: Data Analytics |[Open Lab :arrow_forward:](./lab1)|
+|Module 1: EC2 & S3 |[Open Lab :arrow_forward:](./Module1)|
+|Module 2: Data Analytics |[Open Lab :arrow_forward:](./Module2)|
 
 # Clean Up
 
