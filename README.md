@@ -1,6 +1,6 @@
 # Introduction to EC2, S3, and Datalake and Analytics on AWS
 
-### Learning outcomes from this workshop?
+### Learning outcomes from this workshop
 * Launching an EC2 instance
 * Creation and various properties of S3
 * Design serverless data lake architecture
@@ -8,6 +8,7 @@
 * Use Amazon Kinesis for real-time streaming data
 * Use AWS Glue to automatically catalog datasets
 * Query data using Amazon Athena & visualize it using Amazon QuickSight
+* Use Tensorflow on SageMaker
 
 # Pre-requisites:  
 * You need to have access to an AWS account with **AdminstratorAccess**
@@ -21,6 +22,7 @@
 |:-----|:--:|
 |Module 1: EC2 & S3 |[Open Lab :arrow_forward:](./Module1)|
 |Module 2: Data Analytics |[Open Lab :arrow_forward:](./Module2)|
+|Module 3: Tensorflow on SageMaker |[Open Lab :arrow_forward:](./Module3)|
 
 # Clean Up
 
