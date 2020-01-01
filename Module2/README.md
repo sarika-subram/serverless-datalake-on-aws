@@ -1,7 +1,7 @@
 # Building Serverless Data Lakes on AWS
 Forked from Author: [Unni Pillai](github.com/unnipillai/techfest-building-serverless-datalake-on-aws) 
 
-![Architecture Diagram](./img/analytics-architecture-diagram.png)
+![Architecture Diagram](./img/unnik-techfest-2019-lab-architecture.png)
 
 ### Learning outcomes from this workshop?
 * Design serverless data lake architecture
